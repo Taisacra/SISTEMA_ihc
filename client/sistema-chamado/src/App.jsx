@@ -15,7 +15,7 @@ function App() {
         console.log("Dados no App: ", response.data.usuarios);
         setUsuarios(response.data.usuarios);
       } catch (error) {
-        console.error('Erro ao buscar usuários:', error)
+        console.log('Erro ao buscar usuários:', error)
       }
     };
 
