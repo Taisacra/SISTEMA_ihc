@@ -21,7 +21,7 @@ Router.get("/", async (req,res)=>{
     }
 });
 
-Router.post("/editar_usuario", async (req,res)=>{
+Router.post("/editar", async (req,res)=>{
     const{nome, email,action} = req.body
     if(action === "incluir"){
         try {
