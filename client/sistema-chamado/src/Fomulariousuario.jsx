@@ -3,10 +3,10 @@ import Axios from 'axios';
 
 function FormularioUsuario({usuarios, setUsuarios}){
     const [formData, setFormData] = useState({
-        id: '',
+        id: '99999',
         nome: '',
         email: ''
-    });
+    })
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -34,7 +34,7 @@ function FormularioUsuario({usuarios, setUsuarios}){
 
       const handleAtualizar = () => {
         Axios.post("http://localhost:3600/usuario/editar", {
-          id: formData.id,
+          //id: formData.id,
           nome: formData.nome,
           email: formData.email,
           action: "alterar",

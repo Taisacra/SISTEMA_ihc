@@ -8,19 +8,19 @@ import FormularioUsuario  from './Fomulariousuario';
 function App() {
   const [usuarios, setUsuarios] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     const fetchUsuarios = async () => {
-      try {
-        const response = await Axios.get('http://localhost:3600/usuario');
-        console.log("Dados no App: ", response.data.usuarios);
-        setUsuarios(response.data.usuarios);
-      } catch (error) {
-        console.log('Erro ao buscar usuários:', error)
-      }
+        try {
+            const response = await Axios.get('http://localhost:3000/usuario');
+            console.log("Dados no App: ", response.data.usuarios);
+            setUsuarios(response.data.usuarios); 
+        } catch (error) {
+            console.error('Erro ao buscar usuarios:', error);
+        }
     };
 
-    fetchUsuarios();
-  }, []);
+    fetchUsuarios();  // Adicionado para chamar a função
+}, []); // Dependências vazias para chamar apenas uma vez na montagem
   console.log(usuarios);
 
   return (
