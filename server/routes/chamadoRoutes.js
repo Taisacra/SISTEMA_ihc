@@ -29,7 +29,7 @@ Router.get("/", async (req, res) => {
 });
 
 
-Router.post("/editar_chamado", async (req,res)=>{
+Router.post("/editar", async (req,res)=>{
     const{id_usuario, descricao,setor, prioridade, status, action} = req.body
     if(action === "incluir"){
         try {

@@ -34,7 +34,7 @@ function FormularioUsuario({usuarios, setUsuarios}){
 
       const handleAtualizar = () => {
         Axios.post("http://localhost:3600/usuario/editar", {
-          //id: formData.id,
+          id: formData.id,
           nome: formData.nome,
           email: formData.email,
           action: "alterar",
@@ -63,9 +63,10 @@ function FormularioUsuario({usuarios, setUsuarios}){
       };
 
       const handleExcluir = (id) => {
-        Axios.post(`http://localhost:3600//usuario/excluir/${id}`)
+        Axios.post(`http://localhost:3600/usuario/excluir/${id}`)
           .then(() => {
             // Remove a disciplina excluída da lista de disciplinas no estado
+            console.log(id);
             setUsuarios(usuarios.filter(usuario => usuario.id !== id));
           })
           .catch((error) => {
