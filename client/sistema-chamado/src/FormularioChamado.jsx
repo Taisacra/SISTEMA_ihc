@@ -16,7 +16,7 @@ function FormularioChamado({chamados, setChamados}) {
    };
    const handleIncluir = () => {
        Axios.post("http://localhost:3600/chamado/editar",{
-        id_usuario: formData.nome,
+        id_usuario: formData.id_usuario,
         descricao: formData.descricao,
         setor: formData.setor,
         prioridade: formData.prioridade,
@@ -41,7 +41,7 @@ function FormularioChamado({chamados, setChamados}) {
    const handleAtualizar = () => {
        Axios.post("http://localhost:3600/chamado/editar", {
            id: formData.id,
-           id_usuario: formData.nome,
+           id_usuario: formData.id_usuario,
            descricao: formData.descricao,
            prioridade: formData.prioridade,
            status: formData.status,
@@ -66,19 +66,21 @@ function FormularioChamado({chamados, setChamados}) {
    };
 
    const handleCarregar = (chamado) => {
-       setFormData({
-           id: chamado.id,
-           id_usuario: chamado.name,
-           descricao: chamado.descricao,
-           prioridade: chamado.prioridade,
-           status: chamado.status
-       });
-   };
+    setFormData({
+        id: chamado.id,
+        id_usuario: chamado.usuario?.id || '', // Ou use `chamado.usuario?.nome` se quiser mostrar o nome
+        descricao: chamado.descricao,
+        setor: chamado.setor,
+        prioridade: chamado.prioridade,
+        status: chamado.status
+    });
+};
+
 
 
    const handleExcluir = (id) => {
        Axios.post(`http://localhost:3600/chamado/excluir/${id}`)
-       .the(() => {
+       .then(() => {
            console.log(id);
            setChamados(chamados.filter(chamado => chamado.id !== id));
        })
@@ -93,7 +95,7 @@ return(
         <form>
             <div>
                 <label >Nome: </label>
-                <input type="text" name= "nome"  value={formData.nome || ''} onChange={handleChange} />
+                <input type="text" name= "id_usuario"  value={formData.id_usuario|| ''} onChange={handleChange} />
             </div>
             <div>
                 <label >Setor: </label>
